@@ -20,6 +20,6 @@ COPY --from=build /usr/src/app/dist ./dist
 COPY --from=build /usr/src/app/node_modules ./node_modules
 COPY --from=build /usr/src/app/package*.json ./
 
-EXPOSE 5003
+EXPOSE 5002
 
 CMD [ "node", "dist/main.js" ]

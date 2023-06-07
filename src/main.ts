@@ -2,6 +2,8 @@ import { NestFactory } from '@nestjs/core';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { AppModule } from './app.module';
 
+require('dotenv').config();
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.connectMicroservice<MicroserviceOptions>({
@@ -22,7 +24,7 @@ async function bootstrap() {
         groupId: 'catalog-service-group',
       },
       client: {
-        brokers: ['localhost:9092'],
+        brokers: [process.env.KAFKA_BROKER_URL || 'localhost:9092'],
       },
     },
   });

@@ -28,6 +28,8 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
 import { OutboxCleanerScheduler } from './outbox/outbox-cleaner.scheduler';
 import { RollbackProductsAvailableUnitsUseCase } from './use-cases/rollback-products-available-units.usecase';
 
+require('dotenv').config();
+
 @Module({
   imports: [
     ProductInfrastructureModule,
@@ -39,7 +41,7 @@ import { RollbackProductsAvailableUnitsUseCase } from './use-cases/rollback-prod
         transport: Transport.KAFKA,
         options: {
           client: {
-            brokers: ['localhost:9092'],
+            brokers: [process.env.KAFKA_BROKER_URL || 'localhost:9092'],
           },
           consumer: {
             groupId: 'catalog-service-group',
