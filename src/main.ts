@@ -14,7 +14,7 @@ async function bootstrap() {
         'node_modules/upskilling-protos/proto/category.proto',
         'node_modules/upskilling-protos/proto/product.proto',
       ],
-      url: 'localhost:5002',
+      url: '0.0.0.0:5002',
     },
   });
   app.connectMicroservice<MicroserviceOptions>({
